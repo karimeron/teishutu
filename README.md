@@ -1,3 +1,1 @@
-teishutu1ではREST Countries APIを使用し、ランダムで画像が変わるコードです。
-teishutu2ではPokeAPIを使用し、アイコンをクリックしたらそのポケモンの情報をアラートで教えてくれるコードです。
-teishutu3ではREST Countries APIを使用して国のデータを取得してHTMLで表示しているコードです。
+
