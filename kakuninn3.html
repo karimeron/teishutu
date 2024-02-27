@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>確認３</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #countries {
+            list-style: none;
+            padding: 0;
+        }
+        .country {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        .country h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>国の情報</h1>
+    <ul id="countries"></ul>
+
+    <script>
+        const countryList = document.getElementById('countries');
+        async function fetchCountries() {
+            try {
+                const response = await fetch('https://restcountries.com/v3.1/all');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch countries');
+                }
+                const countries = await response.json();
+                countries.forEach(country => {
+                    const listItem = document.createElement('li');
+                    listItem.classList.add('country');
+                    listItem.innerHTML = `
+                        <h2>${country.name.common}</h2>
+                        <p>Capital: ${country.capital}</p>
+                        <p>Population: ${country.population}</p>
+                        <p>Region: ${country.region}</p>
+                    `;
+                    countryList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error('Error fetching countries:', error.message);
+            }
+        }
+        fetchCountries();
+    </script>
+</body>
+</html>
